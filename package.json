@@ -1,0 +1,33 @@
+{
+  "name": "proyecto-billetera-virtual",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev":"--watch nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CataldoIvan/billetera-virtual-Node-Express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CataldoIvan/billetera-virtual-Node-Express/issues"
+  },
+  "homepage": "https://github.com/CataldoIvan/billetera-virtual-Node-Express#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.13.8",
+    "nodemon": "^2.0.12",
+    "passport": "^0.4.1"
+  }
+}
