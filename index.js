@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const mongoose = require("mongoose");
+
 const app = express();
 const exphbs = require("express-handlebars");
 require("dotenv").config();
@@ -21,7 +22,7 @@ app.engine(
   })
 );
 app.set("view engine", ".hbs");
-
+app.use(favicon(__dirname+"/favicon.ico"));
 app.use(express.urlencoded({ extended: false }));
 app.use(require("./routes/indexRoutes"));
 
