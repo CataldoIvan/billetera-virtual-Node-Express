@@ -1,6 +1,8 @@
 //hacer funcionar el servidor con express
 const express = require("express");
+const morgan = require("morgan");
 const path = require("path");
+const mongoose = require("mongoose");
 const app = express();
 const exphbs = require("express-handlebars");
 require("dotenv").config();
@@ -22,6 +24,22 @@ app.set("view engine", ".hbs");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(require("./routes/indexRoutes"));
+
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://cmiarg:12345@actividades.qf72b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(
+  uri, 
+  { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+  }
+);
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  console.log(" los errores es",err);
+  // perform actions on the collection object
+  client.close();
+});
 
 app.listen(3000, () => {
   console.log("servidor andando");

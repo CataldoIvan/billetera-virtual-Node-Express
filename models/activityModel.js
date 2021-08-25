@@ -1,6 +1,6 @@
-const{Schema,model}=require('mongoose')
+const mongoose=require('mongoose')
 
-const transaccionesSchema=new Schema({
+const transaccionesSchema=mongoose.Schema({
     origen_id:{
         type:String,
         require:true
@@ -21,4 +21,4 @@ const transaccionesSchema=new Schema({
     timestamps:true
 })
 
-module.exports=model("transacciones",transaccionesSchema)
+module.exports=mongoose.model("transacciones",transaccionesSchema)

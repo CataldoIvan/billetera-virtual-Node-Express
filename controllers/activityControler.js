@@ -9,6 +9,8 @@ const actividadCtrlr=(req,res)=>{
     
 }
 
+
+
 module.exports={
     actividadCtrlr
 }
