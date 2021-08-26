@@ -22,11 +22,12 @@ app.engine(
   })
 );
 app.set("view engine", ".hbs");
-app.use(favicon(__dirname+"/favicon.ico"));
+app.use(morgan('dev'))
+//app.use(favicon(__dirname+"/favicon.ico"));
 app.use(express.urlencoded({ extended: false }));
 app.use(require("./routes/indexRoutes"));
 
-const { MongoClient } = require('mongodb');
+/* const { MongoClient } = require('mongodb');
 const uri = "mongodb+srv://cmiarg:12345@actividades.qf72b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(
   uri, 
@@ -41,8 +42,29 @@ client.connect(err => {
   // perform actions on the collection object
   client.close();
 });
+ */
+const mongoAtlasUri =
+  "mongodb+srv://cmiarg:12345@cluster0.qf72b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+try {
+  // Connect to the MongoDB cluster
+  mongoose.connect(
+    mongoAtlasUri,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    () => console.log(" Mongoose is connected"),
+  );
+} catch (e) {
+  console.log("could not connect");
+}
+/* 
+const dbConnection = mongoose.connection;
+dbConnection.on("error", (err) => console.log(`Connection error ${err}`));
+dbConnection.once("open", () => console.log("Connected to DB!"));
+ */
 
 app.listen(3000, () => {
   console.log("servidor andando");
 });
-console.clear();
+
+console.clear()
+
