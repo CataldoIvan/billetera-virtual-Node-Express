@@ -7,21 +7,23 @@ const actividadCtrlr=(req,res,next)=>{
             titulo:"req.data"
         }        
         res.render("home",{dato})
+        
     
 }
 
 //get all activities
-const getActivitys = async (req, res) => {
+const getActivitys = async (req, res,home) => {
+ /*//  res.render('home',{
+    titulo:"es un titulo desde el home"
+  }) */
     try {
       const activitys = await transacciones.find();
       console.log(activitys)
       //res.json(getActivitys);
-      res.render('home',{activitys})
-      
+      res.render('home',{activitys})      
     } catch (err) {
-        console.log(err);
+        console.log("aca hay un error en elk render",err);
       res.send({ message: "error retrieving users" });
-
     }
     
   };
