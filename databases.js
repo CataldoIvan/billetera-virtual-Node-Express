@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const MONGODB_URI = "mongodb://localhost/actividades";
 
-mongoose
-  .connect(MONGODB_URI, {
+mongoose.connect("mongodb+srv://cmiarg:12345@Cluster0.qf72b.mongodb.net/billetera_virtual?retryWrites=true&w=majority", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })
