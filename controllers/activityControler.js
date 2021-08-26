@@ -1,16 +1,52 @@
 const express=require('express')
+const transacciones = require("../models/activityModel");
 
-const actividadCtrlr=(req,res)=>{   
+
+const actividadCtrlr=(req,res,next)=>{   
         let dato={
             titulo:"req.data"
-        }
-        
-        res.render('index',dato)
+        }        
+        res.render("home",{dato})
     
 }
 
+//get all activities
+const getActivitys = async (req, res) => {
+    try {
+      const activitys = await transacciones.find();
+      console.log(activitys)
+      //res.json(getActivitys);
+      res.render('home',{activitys})
+      
+    } catch (err) {
+        console.log(err);
+      res.send({ message: "error retrieving users" });
 
+    }
+    
+  };
+
+
+  //post new activities:
+const newActivity = async (req, res) => {
+   
+      const user = new transacciones({       
+        ...req.body,
+      });
+  
+    
+      try {
+        const newUser = await user.save();
+       
+        res.json(newUser);
+      } catch (err) {
+        res.json({ message: "error saving user",err });
+      }
+    };
+    
 
 module.exports={
-    actividadCtrlr
+    actividadCtrlr,
+    getActivitys,
+    newActivity,
 }

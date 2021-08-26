@@ -10,6 +10,8 @@ require("dotenv").config();
 
 require("./databases");
 
+
+
 const PORT = process.env.PORT || 8000;
 app.set("port", PORT);
 app.set("views", path.join(__dirname, "views"));
@@ -27,42 +29,26 @@ app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: false }));
 app.use(require("./routes/indexRoutes"));
 
-/* const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://cmiarg:12345@actividades.qf72b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(
-  uri, 
-  { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true 
-  }
-);
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  console.log(" los errores es",err);
-  // perform actions on the collection object
-  client.close();
-});
- */
-const mongoAtlasUri =
+/* const mongoAtlasUri =
   "mongodb+srv://cmiarg:12345@cluster0.qf72b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-
-try {
+ */
+/* try {
   // Connect to the MongoDB cluster
   mongoose.connect(
-    mongoAtlasUri,
+    process.env.MONGO_URI,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => console.log(" Mongoose is connected"),
   );
 } catch (e) {
   console.log("could not connect");
-}
+} */
 /* 
 const dbConnection = mongoose.connection;
 dbConnection.on("error", (err) => console.log(`Connection error ${err}`));
 dbConnection.once("open", () => console.log("Connected to DB!"));
  */
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("servidor andando");
 });
 

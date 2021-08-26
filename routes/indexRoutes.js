@@ -1,10 +1,13 @@
 const { Router } = require("express");
 const router = Router();
-const { homeCtrlr,postUser,getUsers } = require("../controllers/indexControler");
-const { actividadCtrlr} = require("../controllers/activityControler");
+const {actividadCtrlr ,newActivity,getActivitys } = require("../controllers/activityControler");
+const {homeCtrlr} = require("../controllers/indexControler");
 
-//router.get("/", homeCtrlr);
-router.get("/", getUsers);
-router.post("/", postUser);
+router.get("/", homeCtrlr);
+//router.get("/", getActivitys);
+//router.post("/", newActivity);
 router.get("/getActivity", actividadCtrlr);
+
+router.get("/home", getActivitys);
+router.post("/home", newActivity);
 module.exports = router;
