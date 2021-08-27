@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const transaccionesSchema = new mongoose.Schema(
+const operacionesSchema = new mongoose.Schema(
   {
     origen_id: {
       type: String,
@@ -13,7 +13,7 @@ const transaccionesSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    motivo: {
+    monto: {
       type: String,
     },
   },
@@ -22,5 +22,5 @@ const transaccionesSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("transacciones", transaccionesSchema);
+module.exports = mongoose.model("operaciones", operacionesSchema);
 

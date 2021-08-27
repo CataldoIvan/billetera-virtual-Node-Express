@@ -1,5 +1,6 @@
 const express=require('express')
-const transacciones = require("../models/activityModel");
+const operaciones = require("../models/operationModel");
+const transaccion=require("../models/transactionModel")
 
 
 const actividadCtrlr=(req,res,next)=>{   
@@ -12,15 +13,22 @@ const actividadCtrlr=(req,res,next)=>{
 }
 
 //get all activities
-const getActivitys = async (req, res,home) => {
+const getoperations = async (req, res,next) => {
  /*//  res.render('home',{
     titulo:"es un titulo desde el home"
+
   }) */
+  console.log(__dirname);
     try {
-      const activitys = await transacciones.find();
-      console.log(activitys)
-      //res.json(getActivitys);
-      res.render('home',{activitys})      
+      const operations = await operaciones.find();
+      console.log(operations)
+      if(operations){
+      //res.json(getoperations);
+      res.render('home',{operations}) 
+      }else{
+        res.send({message:"nada que mostrar"})
+      }
+             
     } catch (err) {
         console.log("aca hay un error en elk render",err);
       res.send({ message: "error retrieving users" });
@@ -28,11 +36,28 @@ const getActivitys = async (req, res,home) => {
     
   };
 
+  const addNewTransaction=async(req,res)=>{
+    const newTransaccion=new transaccion(
+      {
+        ...req.body
+      }
+      ) 
+
+      try {
+        const respNewTrans= await newTransaccion.save();
+        console.log(respNewTrans);
+        res.send({messahe: `nueva transaccion guardado ${respNewTrans}`})
+      } catch (error) {
+        res.send({messahe: `error transaccion  NO guardada `})
+      }
+
+  }
+
 
   //post new activities:
 const newActivity = async (req, res) => {
    
-      const user = new transacciones({       
+      const user = new operaciones({       
         ...req.body,
       });
   
@@ -49,6 +74,7 @@ const newActivity = async (req, res) => {
 
 module.exports={
     actividadCtrlr,
-    getActivitys,
+    getoperations,
     newActivity,
+    addNewTransaction
 }
