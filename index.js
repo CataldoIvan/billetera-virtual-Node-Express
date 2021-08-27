@@ -18,13 +18,13 @@ app.set("views", path.join(__dirname, "views"));
 app.engine(
   ".hbs",
   exphbs({
-    defaultLayout: "index",
-    partialsDir:path.join(app.get("views")),
-    layoutsDir: path.join(app.get("views")),
+    defaultLayout: "main",
+    partialsDir:path.join(app.get("views"),'partials'),
+    layoutsDir: path.join(app.get("views"),"layouts"),
     extname: ".hbs",
   })
 );
-app.set("view engine", "hbs");
+app.set("view engine", ".hbs");
 app.use(morgan('dev'))
 //app.use(favicon(__dirname+"/favicon.ico"));
 app.use(express.urlencoded({ extended: false }));

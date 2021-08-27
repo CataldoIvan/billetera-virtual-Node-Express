@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-const MONGODB_URI = "mongodb://localhost/actividades";
+//const MONGODB_URI = "mongodb://localhost/actividades";
+const MONGO_URI = "mongodb+srv://cmiarg:12345@Cluster0.qf72b.mongodb.net/billetera_virtual?retryWrites=true&w=majority";
 
-mongoose.connect("mongodb+srv://cmiarg:12345@Cluster0.qf72b.mongodb.net/billetera_virtual?retryWrites=true&w=majority", {
+mongoose.connect(MONGO_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })

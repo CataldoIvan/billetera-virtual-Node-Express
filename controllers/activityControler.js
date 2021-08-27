@@ -7,17 +7,12 @@ const actividadCtrlr=(req,res,next)=>{
         let dato={
             titulo:"req.data"
         }        
-        res.render("home",{dato})
-        
+        res.render("home",{dato})       
     
 }
 
 //get all activities
 const getoperations = async (req, res,next) => {
- /*//  res.render('home',{
-    titulo:"es un titulo desde el home"
-
-  }) */
   console.log(__dirname);
     try {
       const operations = await operaciones.find();
@@ -52,6 +47,21 @@ const getoperations = async (req, res,next) => {
       }
 
   }
+  const getTransactions=async(req,res)=>{
+    try {
+      const respTransac= await transaccion.find()
+      console.log(respTransac);
+      //if(respTransac){
+        res.render("index",{respTransac})
+      //}else{
+        //res.send({message:"nada por aca para cargar"})
+      //}
+      
+    } catch (error) {
+      res.send({messahe: `error transaccion  NO guardada `})
+      res.send({message:"ERROR AL CARGAR TRANSACCIONES"})
+    }
+  }
 
 
   //post new activities:
@@ -76,5 +86,6 @@ module.exports={
     actividadCtrlr,
     getoperations,
     newActivity,
-    addNewTransaction
+    addNewTransaction,
+    getTransactions
 }
