@@ -1,3 +1,22 @@
 <p>es desde operaciones</p>
-    {{operations}}
-   
+
+
+   {{#each operations}}
+   {{this}}
+    <li>
+      <ul>
+          {{#each this}} {{origen_id}} {{/each}} 
+            paaago  
+            {{#each this}} {{destino_id}}{{/each}}
+            atraves de por 
+            
+            {{#each this}} {{tipo_transaccion}}{{/each}} 
+            <button onclick="location.href='http://localhost:5050/resTrans/{{#each this}}{{_id}}{{/each}}'" type="button">
+         seleccionar</button>
+      </ul>
+      
+
+    </li>
+    
+        
+   {{/each}}
