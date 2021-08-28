@@ -25,7 +25,8 @@
 <script>
     let form = document.querySelector('form')
     let id = document.querySelector('.id')
+    let inputValue = document.querySelector('input')
    
-    console.dir(id)
-    form.action="/edit/"+id.innerText
+    console.dir(inputValue.value)
+    form.action="/edit/"+id.innerText+"/"+inputValue.value
 </script>

@@ -84,6 +84,27 @@ const editOneTransaction=async(req,res)=>{
       }
 
   }
+
+  const saveEditTransaction=async(req,res)=>{
+    console.log(req.params);
+    try {
+      await operaciones.findByIdAndUpdate(
+        {_id:req.params.id},
+        {comentario:req.params.comentario},
+        function(err,res){
+          err?res.send(err):res.send(res);
+        }
+      
+        )
+     /* // console.log(objOperation)*/
+      res.send({message:"se encontro algo"}) 
+    } catch (error) {
+      res.send({message:"erropr de algo aca",error})
+
+      console.log("es un error ");
+      
+    }
+  }
   const getTransactions=async(req,res)=>{
     try {
       const respTransac= await transaccion.find()
@@ -107,5 +128,6 @@ const editOneTransaction=async(req,res)=>{
     newActivity,
     addNewTransaction,
     getTransactions,
-    editOneTransaction
+    editOneTransaction,
+    saveEditTransaction
 }
