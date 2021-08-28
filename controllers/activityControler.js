@@ -39,23 +39,22 @@ const getoperations = async (req, res,next) => {
   
   
   //post new activities:
-  const newActivity = async (req, res) => {
-    
-    const user = new operaciones({       
+  const newOperation = async (req, res) => {
+    const operation = new operaciones({       
       ...req.body,
     });
     
-    
     try {
-      const newUser = await user.save();
-      
-      res.json(newUser);
+      const newOperation = await operation.save();      
+      res.json(newOperation);
     } catch (err) {
       res.json({ message: "error saving user",err });
     }
   };
-const editOneTransaction=async(req,res)=>{  
-  try {   
+
+const editOneOperation=async(req,res)=>{  
+  
+   try {   
     var id = req.params.id;       
     var o_id = new ObjectId(id); 
 
@@ -64,7 +63,7 @@ const editOneTransaction=async(req,res)=>{
     res.render("editOper",{objOperEdit})    
   } catch (error) {
     res.send({message:`NO ENCONTRAMOS NADA${error}`})
-  }
+  } 
 
 }
   ///SECCION DE TRANSACCIONES QUE SE PUEDEN HACER
@@ -85,23 +84,22 @@ const editOneTransaction=async(req,res)=>{
 
   }
 
-  const saveEditTransaction=async(req,res)=>{
-    console.log(req.params.comentario);
-    try {
-      await operaciones.findByIdAndUpdate(
+  const saveEditOperation=async(req,res)=>{
+    
+     try {
+      const objActuali=await operaciones.findByIdAndUpdate(
         {_id:req.params.id},
-        {comentario:req.params.comentario},
-        
-      
-        )
-     /* // console.log(objOperation)*/
+        {comentario:req.params.comentario}, {
+          new: true
+        })
+     
       res.send({message:"se encontro algo"}) 
     } catch (error) {
       res.send({message:"erropr de algo aca",error})
 
       console.log("es un error ");
       
-    }
+    } 
   }
   const getTransactions=async(req,res)=>{
     try {
@@ -123,9 +121,9 @@ const editOneTransaction=async(req,res)=>{
   module.exports={
     actividadCtrlr,
     getoperations,
-    newActivity,
+    newOperation,
     addNewTransaction,
     getTransactions,
-    editOneTransaction,
-    saveEditTransaction
+    editOneOperation,
+    saveEditOperation
 }

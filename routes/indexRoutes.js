@@ -2,24 +2,24 @@ const { Router } = require("express");
 const router = Router();
 const {
   actividadCtrlr,
-  newActivity,
+  newOperation,
   getoperations,
   addNewTransaction,
   getTransactions,
-  editOneTransaction,
-  saveEditTransaction
+  editOneOperation,
+  saveEditOperation
 } = require("../controllers/activityControler");
 const { homeCtrlr } = require("../controllers/indexControler");
 
 router.get("/", homeCtrlr);
 //router.get("/", getoperations);
-//router.post("/", newActivity);
+//router.post("/", newOperation);
 router.get("/getActivity", actividadCtrlr);
 
 router.get("/home", getoperations);
-router.post("/home", newActivity);
-router.get("/edit/:id", editOneTransaction);
-router.post("/edit/:id/:comentario", saveEditTransaction);
+router.post("/addOperation", newOperation);
+router.get("/edit/:id", editOneOperation);
+router.post("/edit/:id/:comentario", saveEditOperation);
 router.post("/addTrans", addNewTransaction);
 router.get("/getTrans", getTransactions);
 module.exports = router;
