@@ -1,6 +1,10 @@
 const express=require('express')
 const operaciones = require("../models/operationModel");
 const transaccion=require("../models/transactionModel")
+const path = require("path");
+const transactionModel = require('../models/transactionModel');
+var ObjectId = require('mongodb').ObjectId; 
+
 
 
 const actividadCtrlr=(req,res,next)=>{   
@@ -13,13 +17,14 @@ const actividadCtrlr=(req,res,next)=>{
 
 //get all activities
 const getoperations = async (req, res,next) => {
-  console.log(__dirname);
+  
+
     try {
       const operations = await operaciones.find();
       console.log(operations)
       if(operations){
       //res.json(getoperations);
-      res.render('home',{operations}) 
+      res.render('home',{oper:operations}) 
       }else{
         res.send({message:"nada que mostrar"})
       }
@@ -31,6 +36,38 @@ const getoperations = async (req, res,next) => {
     
   };
 
+  
+  
+  //post new activities:
+  const newActivity = async (req, res) => {
+    
+    const user = new operaciones({       
+      ...req.body,
+    });
+    
+    
+    try {
+      const newUser = await user.save();
+      
+      res.json(newUser);
+    } catch (err) {
+      res.json({ message: "error saving user",err });
+    }
+  };
+const editOneTransaction=async(req,res)=>{  
+  try {   
+    var id = req.params.id;       
+    var o_id = new ObjectId(id); 
+
+    const objOperEdit=await operaciones.findById(o_id)
+
+    res.render("editOper",{objOperEdit})    
+  } catch (error) {
+    res.send({message:`NO ENCONTRAMOS NADA${error}`})
+  }
+
+}
+  ///SECCION DE TRANSACCIONES QUE SE PUEDEN HACER
   const addNewTransaction=async(req,res)=>{
     const newTransaccion=new transaccion(
       {
@@ -62,30 +99,13 @@ const getoperations = async (req, res,next) => {
       res.send({message:"ERROR AL CARGAR TRANSACCIONES"})
     }
   }
-
-
-  //post new activities:
-const newActivity = async (req, res) => {
-   
-      const user = new operaciones({       
-        ...req.body,
-      });
   
-    
-      try {
-        const newUser = await user.save();
-       
-        res.json(newUser);
-      } catch (err) {
-        res.json({ message: "error saving user",err });
-      }
-    };
-    
-
-module.exports={
+  
+  module.exports={
     actividadCtrlr,
     getoperations,
     newActivity,
     addNewTransaction,
-    getTransactions
+    getTransactions,
+    editOneTransaction
 }

@@ -1,9 +1,27 @@
 <p>es desde operaciones</p>
 
-
-   {{#each operations}}
-   {{this}}
-    <li>
+<h1>Listado de Operaciones realizadas</h1>
+    {{#each oper}}
+  
+   <li>    
+        <a href="">
+        <button hidden name="{{#each this}} {{_id}} {{/each}}"></button>
+        {{!--  Este es el ID: {{#each this}} {{_id}} {{/each}} --}}
+          {{#each this}} {{origen_id}} {{/each}} 
+          paaago  
+          {{#each this}} {{destino_id}}{{/each}}
+          atraves de por 
+          
+          {{#each this}} {{tipo_transaccion}}{{/each}} 
+          <br>
+          realizado el :
+          {{#each this}} {{createdAt}}{{/each}} 
+           
+        </a>  
+        <li></li>
+   {{!-- </li> 
+    
+    
       <ul>
           {{#each this}} {{origen_id}} {{/each}} 
             paaago  
@@ -11,12 +29,30 @@
             atraves de por 
             
             {{#each this}} {{tipo_transaccion}}{{/each}} 
-            <button onclick="location.href='http://localhost:5050/resTrans/{{#each this}}{{_id}}{{/each}}'" type="button">
-         seleccionar</button>
-      </ul>
-      
+            {{!-- <button onclick="location.href='http://localhost:5050/resTrans/{{#each this}}{{_id}}{{/each}}'" type="button">
+         seleccionar</button> 
+      </ul>     
 
-    </li>
-    
+    </li>     --}}
         
    {{/each}}
+
+  <script>
+    let theLinks = document.querySelectorAll('a button')
+    
+    let linkA=document.querySelector('a')
+    theLinks.forEach((element,index)=>{
+        
+        theLinks.forEach((elementLink,indexLink)=>{
+          if(index===indexLink){
+            element.parentNode.href="http://localhost:5050/edit/"+element.name.slice(1,25)
+            }         
+        })
+
+      
+    })
+   
+
+
+  console.dir(obj.name.slice(0,25))
+</script>

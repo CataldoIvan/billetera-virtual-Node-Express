@@ -16,6 +16,9 @@ const operacionesSchema = new mongoose.Schema(
     monto: {
       type: String,
     },
+    comentario: {
+      type: String,
+    }
   },
   {
     timestamps: true,

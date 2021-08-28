@@ -1,0 +1,31 @@
+<h1>editar Operacion </h1>
+
+
+{{#each objOperEdit}}
+    <p class="id">
+    {{_id}}
+    </p>
+    <P>
+    {{origen_id}}
+    </P>
+    <p>
+    {{destino_id}}
+    </p>
+    <p>
+        {{monto}}
+    </p>
+    {{#if comentario}}
+    <form action="/edit" method="POST" >
+        <input type="text" value="{{comentario}}">
+    </form>
+    {{/if}}
+{{/each}}
+
+
+<script>
+    let form = document.querySelector('form')
+    let id = document.querySelector('.id')
+   
+    console.dir(id)
+    form.action="/edit/"+id.innerText
+</script>

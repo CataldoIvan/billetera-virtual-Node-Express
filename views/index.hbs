@@ -1,5 +1,24 @@
 
    <p>desde el index</p>
    
-    {{respTransac}}   
     
+    
+<h1>Listado de Transacciones posibles a realizar</h1>
+    {{#each respTransac}}
+  
+   <li>    
+        <a href="">
+       
+        {{!--  Este es el ID: {{#each this}} {{_id}} {{/each}} --}}
+        ID de Forma de Pago : 
+          {{#each this}} {{transaccion_id}} {{/each}} 
+          Nombre:  "
+          {{#each this}} {{nombre}}{{/each}}
+          "
+         
+           
+        </a>  
+        <li></li>
+
+        
+   {{/each}}

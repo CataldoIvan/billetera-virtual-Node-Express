@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const mongoose = require("mongoose");
+const favicon = require("serve-favicon");
 
 const app = express();
 const exphbs = require("express-handlebars");
@@ -26,7 +27,7 @@ app.engine(
 );
 app.set("view engine", ".hbs");
 app.use(morgan('dev'))
-//app.use(favicon(__dirname+"/favicon.ico"));
+app.use(favicon(path.join(__dirname, 'views', './favicon.ico')))
 app.use(express.urlencoded({ extended: false }));
 
 app.use(require("./routes/indexRoutes"));
@@ -52,6 +53,7 @@ dbConnection.once("open", () => console.log("Connected to DB!"));
 
 app.listen(process.env.PORT, () => {
   console.log("servidor andando");
+  console.log(path.join(__dirname, 'views', './favicon.ico'));
 });
 
 console.clear()
