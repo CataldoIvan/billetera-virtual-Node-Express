@@ -86,14 +86,12 @@ const editOneTransaction=async(req,res)=>{
   }
 
   const saveEditTransaction=async(req,res)=>{
-    console.log(req.params);
+    console.log(req.params.comentario);
     try {
       await operaciones.findByIdAndUpdate(
         {_id:req.params.id},
         {comentario:req.params.comentario},
-        function(err,res){
-          err?res.send(err):res.send(res);
-        }
+        
       
         )
      /* // console.log(objOperation)*/
