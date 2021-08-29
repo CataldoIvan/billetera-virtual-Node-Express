@@ -1,6 +1,7 @@
 //hacer funcionar el servidor con express
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
 const favicon = require("serve-favicon");
@@ -11,24 +12,23 @@ require("dotenv").config();
 
 require("./databases");
 
-
-
 const PORT = process.env.PORT || 8000;
-app.use(express.json())
+app.use(express.json());
 app.set("port", PORT);
+app.use(cors());
 app.set("views", path.join(__dirname, "views"));
 app.engine(
   ".hbs",
   exphbs({
     defaultLayout: "main",
-    partialsDir:path.join(app.get("views"),'partials'),
-    layoutsDir: path.join(app.get("views"),"layouts"),
+    partialsDir: path.join(app.get("views"), "partials"),
+    layoutsDir: path.join(app.get("views"), "layouts"),
     extname: ".hbs",
   })
 );
 app.set("view engine", ".hbs");
-app.use(morgan('dev'))
-app.use(favicon(path.join(__dirname, 'views', './favicon.ico')))
+app.use(morgan("dev"));
+app.use(favicon(path.join(__dirname, "views", "./favicon.ico")));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(require("./routes/indexRoutes"));
@@ -54,8 +54,7 @@ dbConnection.once("open", () => console.log("Connected to DB!"));
 
 app.listen(process.env.PORT, () => {
   console.log("servidor andando");
-  console.log(path.join(__dirname, 'views', './favicon.ico'));
+  console.log(path.join(__dirname, "views", "./favicon.ico"));
 });
 
-console.clear()
-
+console.clear();
