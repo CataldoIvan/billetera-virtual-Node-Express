@@ -26,6 +26,11 @@ const operacionesSchema = new mongoose.Schema(
     },
     comentario: {
       type: String,
+      default:""
+    },
+    rechazado: {
+      type: Boolean,
+      default:false
     }
   },
   {
