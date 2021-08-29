@@ -5,16 +5,24 @@ const operacionesSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    origen_nombre: {
+      type: String,
+      require: true,
+    },
     destino_id: {
       type: String,
       require: true,
     },
-    tipo_transaccion: {
+    destino_nombre: {
       type: String,
       require: true,
     },
+    tipo_transaccion: {
+      type: Number,
+      require: true,
+    },
     monto: {
-      type: String,
+      type: Number,
     },
     comentario: {
       type: String,

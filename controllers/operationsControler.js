@@ -16,7 +16,7 @@ const getoperations = async (req, res, next) => {
     const operations = await operaciones.find();
     console.log(operations);
     if (operations) {
-      res.json(operations);
+      res.json({activitys:operations});
       //res.render('home',{oper:operations})
     } else {
       res.send({ message: "nada que mostrar" });
