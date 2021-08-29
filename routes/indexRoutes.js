@@ -4,13 +4,15 @@ const {
   actividadCtrlr,
   newOperation,
   getoperations,
-  addNewTransaction,
-  getTransactions,
   editOneOperation,
   saveEditOperation,
-  deleteForId
-} = require("../controllers/activityControler");
+  deleteForId,
+} = require("../controllers/operationsControler");
 const { homeCtrlr } = require("../controllers/indexControler");
+const {
+  addNewTransaction,
+  getTransactions,
+} = require("../controllers/transactionController");
 
 router.get("/", homeCtrlr);
 //router.get("/", getoperations);
