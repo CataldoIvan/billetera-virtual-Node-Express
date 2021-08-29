@@ -17,23 +17,12 @@
           realizado el :
           {{#each this}} {{createdAt}}{{/each}} 
            
-        </a>  
+        </a>
+        <form action="/deleteOperation" method="post">
+            <button type="submit" name="idToDelete" value={{#each this}} {{_id}}{{/each}}  >Borrar</button>
+        </form>
+        
         <li></li>
-   {{!-- </li> 
-    
-    
-      <ul>
-          {{#each this}} {{origen_id}} {{/each}} 
-            paaago  
-            {{#each this}} {{destino_id}}{{/each}}
-            atraves de por 
-            
-            {{#each this}} {{tipo_transaccion}}{{/each}} 
-            {{!-- <button onclick="location.href='http://localhost:5050/resTrans/{{#each this}}{{_id}}{{/each}}'" type="button">
-         seleccionar</button> 
-      </ul>     
-
-    </li>     --}}
         
    {{/each}}
 
@@ -51,8 +40,5 @@
 
       
     })
-   
-
-
-  console.dir(obj.name.slice(0,25))
 </script>
+   

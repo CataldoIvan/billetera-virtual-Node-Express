@@ -16,7 +16,9 @@
     </p>
     {{#if comentario}}
     <form action="/edit" method="POST" >
-        <input type="text" value="{{comentario}}" >
+        <input type="text" name="comentario" value="{{comentario}}" >
+        <input type="text" hidden name="id" value={{_id}} >
+        <button type="submit"> enviar</button>
     </form>
     {{/if}}
 {{/each}}
@@ -26,13 +28,13 @@
     let form = document.querySelector('form')
     let id = document.querySelector('.id')
     let inputValue ;
-
+/*
 form.addEventListener('submit', ()=>{
        inputValue= document.querySelector('input').value
        console.log(inputValue)
     form.action="/edit/"+id.innerText+"/"+inputValue
 
-});
+}); */
 
    
     

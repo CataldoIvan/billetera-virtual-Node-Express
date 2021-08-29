@@ -7,7 +7,8 @@ const {
   addNewTransaction,
   getTransactions,
   editOneOperation,
-  saveEditOperation
+  saveEditOperation,
+  deleteForId
 } = require("../controllers/activityControler");
 const { homeCtrlr } = require("../controllers/indexControler");
 
@@ -18,8 +19,9 @@ router.get("/getActivity", actividadCtrlr);
 
 router.get("/home", getoperations);
 router.post("/addOperation", newOperation);
+router.post("/deleteOperation", deleteForId);
 router.get("/edit/:id", editOneOperation);
-router.post("/edit/:id/:comentario", saveEditOperation);
+router.post("/edit", saveEditOperation);
 router.post("/addTrans", addNewTransaction);
 router.get("/getTrans", getTransactions);
 module.exports = router;

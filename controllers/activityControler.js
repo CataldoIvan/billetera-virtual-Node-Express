@@ -64,15 +64,22 @@ const editOneOperation=async(req,res)=>{
   } catch (error) {
     res.send({message:`NO ENCONTRAMOS NADA${error}`})
   } 
-
 }
+const deleteForId=async(req,res)=>{
+  try {
+    const resOperDelete= await operaciones.remove({_id:req.body.idToDelete})
+    res.send(resOperDelete)
+  } catch (error) {
+    res.send({message:"error al querer borrar"})
+  }
+}
+
   ///SECCION DE TRANSACCIONES QUE SE PUEDEN HACER
   const addNewTransaction=async(req,res)=>{
     const newTransaccion=new transaccion(
       {
         ...req.body
-      }
-      ) 
+      }) 
 
       try {
         const respNewTrans= await newTransaccion.save();
@@ -81,35 +88,32 @@ const editOneOperation=async(req,res)=>{
       } catch (error) {
         res.send({messahe: `error transaccion  NO guardada `})
       }
-
   }
 
   const saveEditOperation=async(req,res)=>{
-    
+   
      try {
       const objActuali=await operaciones.findByIdAndUpdate(
-        {_id:req.params.id},
-        {comentario:req.params.comentario}, {
+        {_id:req.body.id},
+        {comentario:req.body.comentario}, {
           new: true
         })
      
-      res.send({message:"se encontro algo"}) 
+      res.render("home") 
     } catch (error) {
       res.send({message:"erropr de algo aca",error})
-
-      console.log("es un error ");
-      
+      console.log("es un error ");      
     } 
   }
   const getTransactions=async(req,res)=>{
     try {
       const respTransac= await transaccion.find()
       console.log(respTransac);
-      //if(respTransac){
+      if(respTransac){
         res.render("index",{respTransac})
-      //}else{
-        //res.send({message:"nada por aca para cargar"})
-      //}
+      }else{
+        res.send({message:"nada por aca para cargar"})
+      }
       
     } catch (error) {
       res.send({messahe: `error transaccion  NO guardada `})
@@ -125,5 +129,6 @@ const editOneOperation=async(req,res)=>{
     addNewTransaction,
     getTransactions,
     editOneOperation,
-    saveEditOperation
+    saveEditOperation,
+    deleteForId
 }
