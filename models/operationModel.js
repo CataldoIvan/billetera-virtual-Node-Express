@@ -24,13 +24,8 @@ const operacionesSchema = new mongoose.Schema(
     monto: {
       type: Number,
     },
-    comentario: {
-      type: String,
-      default:""
-    },
-    rechazado: {
-      type: Boolean,
-      default:false
+    estado:{
+      type:Number
     }
   },
   {
