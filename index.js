@@ -5,6 +5,7 @@ const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
 const favicon = require("serve-favicon");
+const {getTimes} = require("./middwares/times");
 
 const app = express();
 const exphbs = require("express-handlebars");
@@ -14,6 +15,7 @@ require("./databases");
 
 const PORT = process.env.PORT || 8000;
 app.use(express.json());
+app.use(getTimes)
 app.set("port", PORT);
 app.use(cors());
 app.set("views", path.join(__dirname, "views"));
@@ -51,10 +53,10 @@ const dbConnection = mongoose.connection;
 dbConnection.on("error", (err) => console.log(`Connection error ${err}`));
 dbConnection.once("open", () => console.log("Connected to DB!"));
  */
-
+var puerto=process.env.PORT;
 app.listen(process.env.PORT, () => {
-  console.log("servidor andando");
-  console.log(path.join(__dirname, "views", "./favicon.ico"));
+  console.log(`servidor andando en ${puerto}`);
+ 
 });
 
 console.clear();

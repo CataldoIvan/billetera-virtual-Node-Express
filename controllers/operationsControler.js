@@ -10,6 +10,8 @@ const actividadCtrlr = (req, res, next) => {
   res.render("home", { dato });
 };
 
+
+
 //get all activities
 const getoperations = async (req, res, next) => {
   try {
@@ -41,7 +43,7 @@ const newOperation = async (req, res) => {
   }
 };
 
-const editOneOperation = async (req, res) => {
+/* const editOneOperation = async (req, res) => {
   try {
     var id = req.params.id;
     var o_id = new ObjectId(id);
@@ -52,7 +54,28 @@ const editOneOperation = async (req, res) => {
   } catch (error) {
     res.send({ message: `NO ENCONTRAMOS NADA${error}` });
   }
-};
+}; */
+
+const editOneOperation=async(req,res)=>{
+  console.log(req.params.id)
+ // res.json(req.params.id)
+
+   try {
+    var idToEdit=req.params.id;
+    var o_id=new ObjectId(idToEdit);
+
+    const resOperEdit=await operaciones.findByIdAndUpdate(
+      {_id:o_id },
+      {estado:req.body.estado},
+      {
+        new:true
+      }
+      );
+      res.json(resOperEdit)
+  } catch (error) {
+    res.send({ message: `NO ENCONTRAMOS NADA${error}` });
+  } 
+}
 
 const deleteForId = async (req, res) => {
   try {
