@@ -13,7 +13,7 @@ const actividadCtrlr = (req, res, next) => {
 //get all activities
 const getoperations = async (req, res, next) => {
   try {
-    const operations = await operaciones.find();
+    const operations = await operaciones.find().sort( { createdAt: -1 } );
     console.log(operations);
     if (operations) {
       res.json({activitys:operations});
