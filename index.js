@@ -15,15 +15,18 @@ require("dotenv").config();
 require("./databases");
 
 const PORT = process.env.PORT || 8000;
-/* var corsOptions = {
-  "origin": ['*'],
-  methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  credentials: true, //Credentials are cookies, authorization headers or TLS client certificates.
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept']
-};
-
-app.use(cors(corsOptions)); */
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  if(req.method === 'OPTIONS'){
+      res.status(204)
+      return
+  }
+  next();
+});/* 
 var jwt = require('jsonwebtoken');
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -42,7 +45,7 @@ app.use((req, res, next) => {
         next();
       }
   
-});
+}); */
 app.options('*', cors())
 app.use(express.json());
 app.use(getTimes)
