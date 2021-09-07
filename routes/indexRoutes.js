@@ -24,12 +24,12 @@ router.get("/", homeCtrlr);
 //router.post("/", newOperation);
 router.get("/getActivity", actividadCtrlr);
 
-router.get("/home", getoperations);
+router.get("/home?:id", getoperations);
 router.post("/addOperation", newOperation);
 router.post("/deleteOperation", deleteForId);
 //router.get("/edit/:id", editOneOperation);
 router.post("/edit", saveEditOperation);
-router.patch("/edit/:id", editOneOperation)
+router.patch("/edit/:id", editOneOperation);
 router.post("/addTrans", addNewTransaction);
 router.get("/getTrans", getTransactions);
 router.post("/addStatus", addStatus);
