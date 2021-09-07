@@ -5,7 +5,7 @@ const moment = require('moment');
 var validarTokenFn = function(req,res, next){
  
    // console.log(`EL DIA EEEEEES ${Date.now()}`)
-  // console.dir(req.headers.authorization)
+   
    const token=req.headers.authorization
    var decoded = jwt.decode(token);
   // console.log(" es decorde exp",decoded.exp) 

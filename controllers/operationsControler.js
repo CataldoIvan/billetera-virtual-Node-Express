@@ -36,6 +36,7 @@ const getoperations = async (req, res, next) => {
 
 //post new activities:
 const newOperation = async (req, res) => {
+  console.log(req.body)
   const operation = new operaciones({
     ...req.body,
   });
