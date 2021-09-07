@@ -6,7 +6,7 @@ var validarTokenFn = function(req,res, next){
  
    // console.log(`EL DIA EEEEEES ${Date.now()}`)
     //console.dir(req.headers.authorization)
-    const token=req.headers.authorization
+    const token=req.headers.Authorization
     var decoded = jwt.decode(token);
     //console.log(decoded.exp) 
     //console.log(Date.now()) 
