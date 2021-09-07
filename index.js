@@ -20,10 +20,9 @@ app.use(getTimes)
 app.use(validarTokenFn)
 app.set("port", PORT);
 app.use(cors({
-  
-"origin": "*",
-"methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-"allowedHeaders": "Authorization",
+"origin": ['*'],
+"methods": ['GET','HEAD','PUT','PATCH','POST','DELETE'],
+"allowedHeaders": ['Authorization'],
 "preflightContinue": false,
 "optionsSuccessStatus": 204
 }
