@@ -18,8 +18,8 @@ const getoperations = async (req, res, next) => {
   //res.json(req.query.origen_id);
    try {
     const operations = await operaciones.find({
-      $or:[{"origen_id": req.query.origen_id},
-      {"destino_id": req.query.origen_id}]
+      $or:[{"origen_id": req.query.id},
+      {"destino_id": req.query.id}]
     }).sort( { createdAt: -1 } );
     console.log(operations);
     if (operations) {
