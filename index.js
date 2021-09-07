@@ -45,24 +45,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(require("./routes/indexRoutes"));
 
-/* const mongoAtlasUri =
-  "mongodb+srv://cmiarg:12345@cluster0.qf72b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
- */
-/* try {
-  // Connect to the MongoDB cluster
-  mongoose.connect(
-    process.env.MONGO_URI,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => console.log(" Mongoose is connected"),
-  );
-} catch (e) {
-  console.log("could not connect");
-} */
-/* 
-const dbConnection = mongoose.connection;
-dbConnection.on("error", (err) => console.log(`Connection error ${err}`));
-dbConnection.once("open", () => console.log("Connected to DB!"));
- */
 var puerto=process.env.PORT;
 app.listen(process.env.PORT, () => {
   console.log(`servidor andando en ${puerto}`);
