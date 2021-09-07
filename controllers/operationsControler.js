@@ -23,7 +23,7 @@ const getoperations = async (req, res, next) => {
     }).sort( { createdAt: -1 } );
     console.log(operations);
     if (operations) {
-      res.json({activitys: operation})
+      res.json({activitys:operations});
       //res.render('home',{oper:operations})
     } else {
       res.send({ message: "nada que mostrar" });
