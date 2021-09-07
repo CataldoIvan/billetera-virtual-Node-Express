@@ -19,7 +19,15 @@ app.use(express.json());
 app.use(getTimes)
 app.use(validarTokenFn)
 app.set("port", PORT);
-app.use(cors());
+app.use(cors({
+  
+"origin": "*",
+"methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+"headers": "Authorization",
+"preflightContinue": false,
+"optionsSuccessStatus": 204
+}
+));
 app.set("views", path.join(__dirname, "views"));
 app.engine(
   ".hbs",

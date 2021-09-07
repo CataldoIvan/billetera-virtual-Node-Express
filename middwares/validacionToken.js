@@ -5,10 +5,10 @@ const moment = require('moment');
 var validarTokenFn = function(req,res, next){
  
    // console.log(`EL DIA EEEEEES ${Date.now()}`)
-    //console.dir(req.headers.authorization)
-    const token=req.headers.Authorization
-    var decoded = jwt.decode(token);
-    //console.log(decoded.exp) 
+  // console.dir(req.headers.authorization)
+   const token=req.headers.authorization
+   var decoded = jwt.decode(token);
+  // console.log(" es decorde exp",decoded.exp) 
     //console.log(Date.now()) 
     if (Date.now() >= decoded.exp*1000) {
         console.log("token expirado")
