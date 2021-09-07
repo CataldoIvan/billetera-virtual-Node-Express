@@ -14,15 +14,16 @@ const actividadCtrlr = (req, res, next) => {
 
 //get all activities
 const getoperations = async (req, res, next) => {
-  console.log(req.body);
-  
-  try {
+  console.dir(req.query);
+  //res.json(req.query.origen_id);
+   try {
     const operations = await operaciones.find({
-      origen_id: req.body.origen_id
+      $or:[{"origen_id": req.query.origen_id},
+      {"destino_id": req.query.origen_id}]
     }).sort( { createdAt: -1 } );
     console.log(operations);
     if (operations) {
-      res.json({activitys:operations});
+      res.json(operations);
       //res.render('home',{oper:operations})
     } else {
       res.send({ message: "nada que mostrar" });
@@ -30,7 +31,7 @@ const getoperations = async (req, res, next) => {
   } catch (err) {
     console.log("aca hay un error en elk render", err);
     res.send({ message: "error retrieving users" });
-  }
+  } 
 };
 
 //post new activities:

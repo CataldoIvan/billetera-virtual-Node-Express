@@ -24,7 +24,7 @@ router.get("/", homeCtrlr);
 //router.post("/", newOperation);
 router.get("/getActivity", actividadCtrlr);
 
-router.get("/home?:id", getoperations);
+router.get("/home?:origen_id", getoperations);
 router.post("/addOperation", newOperation);
 router.post("/deleteOperation", deleteForId);
 //router.get("/edit/:id", editOneOperation);
