@@ -15,38 +15,7 @@ require("dotenv").config();
 require("./databases");
 
 const PORT = process.env.PORT || 8000;
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-  if(req.method === 'OPTIONS'){
-      res.status(204)
-      return
-  }
-  next();
-});/* 
-var jwt = require('jsonwebtoken');
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-
-  const token=req.headers.authorization
-   var decoded = jwt.decode(token);
-    if (Date.now() >= decoded.exp*1000) {
-        console.log("token expirado")
-        return res.status(401).send({message:'Token expirado'});      
-      }else{
-        console.log("token ok!") 
-        
-        next();
-      }
-  
-}); */
-app.options('*', cors())
+app.use(cors());
 app.use(express.json());
 app.use(getTimes)
 //app.use(validarTokenFn)
@@ -68,6 +37,24 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(require("./routes/indexRoutes"));
 
+/* const mongoAtlasUri =
+  "mongodb+srv://cmiarg:12345@cluster0.qf72b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+ */
+/* try {
+  // Connect to the MongoDB cluster
+  mongoose.connect(
+    process.env.MONGO_URI,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    () => console.log(" Mongoose is connected"),
+  );
+} catch (e) {
+  console.log("could not connect");
+} */
+/* 
+const dbConnection = mongoose.connection;
+dbConnection.on("error", (err) => console.log(`Connection error ${err}`));
+dbConnection.once("open", () => console.log("Connected to DB!"));
+ */
 var puerto=process.env.PORT;
 app.listen(process.env.PORT, () => {
   console.log(`servidor andando en ${puerto}`);
