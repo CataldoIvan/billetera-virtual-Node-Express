@@ -15,10 +15,22 @@ require("dotenv").config();
 require("./databases");
 
 const PORT = process.env.PORT || 8000;
-app.use(cors());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  if(req.method === 'OPTIONS'){
+      res.sendStatus(204)
+      return
+  }
+  next();
+});
+//app.use(cors());
 app.use(express.json());
 app.use(getTimes)
-//app.use(validarTokenFn)
+app.use(validarTokenFn)
 app.set("port", PORT);
 app.set("views", path.join(__dirname, "views"));
 app.engine(
