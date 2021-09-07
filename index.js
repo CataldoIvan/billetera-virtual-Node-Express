@@ -6,6 +6,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const favicon = require("serve-favicon");
 const {getTimes} = require("./middwares/times");
+const {validarTokenFn} = require("./middwares/validacionToken");
 
 const app = express();
 const exphbs = require("express-handlebars");
@@ -16,6 +17,7 @@ require("./databases");
 const PORT = process.env.PORT || 8000;
 app.use(express.json());
 app.use(getTimes)
+//app.use(validarTokenFn)
 app.set("port", PORT);
 app.use(cors());
 app.set("views", path.join(__dirname, "views"));
