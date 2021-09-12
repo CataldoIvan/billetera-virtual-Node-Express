@@ -12,7 +12,25 @@ const actividadCtrlr = (req, res, next) => {
 
 
 
+
+const getAllOperations = async (req, res, next) => {
+ 
+   try {
+    const operations = await operaciones.find().sort( { createdAt: -1 } );
+   // console.log(operations);
+    if (operations) {
+      res.json({activitys:operations});
+      //res.render('home',{oper:operations})
+    } else {
+      res.send({ message: "nada que mostrar" });
+    }
+  } catch (err) {
+    console.log("aca hay un error en elk render", err);
+    res.send({ message: "error retrieving users" });
+  } 
+};
 //get all activities
+
 const getoperations = async (req, res, next) => {
   console.dir(req.query);
   //res.json(req.query.origen_id);
@@ -120,4 +138,5 @@ module.exports = {
   editOneOperation,
   saveEditOperation,
   deleteForId,
+  getAllOperations
 };
