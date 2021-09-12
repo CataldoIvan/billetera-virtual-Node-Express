@@ -1,26 +1,17 @@
-var jwt = require('jsonwebtoken');
-const moment = require('moment');
+var jwt = require("jsonwebtoken");
+const moment = require("moment");
 
+var validarTokenFn = function (req, res, next) {
+  const token = req.headers["authorization"];
 
-var validarTokenFn = function(req,res, next){
- 
-   // console.log(`EL DIA EEEEEES ${Date.now()}`)
-   
-   const token=req.headers.authorization
-   var decoded = jwt.decode(token);
-  // console.log(" es decorde exp",decoded.exp) 
-    //console.log(Date.now()) 
-    if (Date.now() >= decoded.exp*1000) {
-        console.log("token expirado")
-        return res.status(401).send({message:'Token expirado'});      
-      }else{
-        console.log("token ok!") 
-        //req.user = decoded;
-        next();
-      }
+  if (token == null) return res.sendStatus(401);
 
+  jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
+    if (err) {
+      return res.sendStatus(403);
+    }
+    next();
+  });
+};
 
-
-  }
-
-  module.exports={validarTokenFn}
+module.exports = { validarTokenFn };
