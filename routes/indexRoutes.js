@@ -7,7 +7,8 @@ const {
   getoperations,
   editOneOperation,
   saveEditOperation,
-  deleteForId
+  deleteForId,
+  getAllOperations
 } = require("../controllers/operationsControler");
 const { homeCtrlr } = require("../controllers/indexControler");
 const {
@@ -26,6 +27,7 @@ router.get("/", homeCtrlr);
 router.get("/getActivity", actividadCtrlr);
 
 router.get("/home?:id", getoperations);
+router.get("/home/getAll", getAllOperations);
 router.post("/addOperation", newOperation);
 router.post("/deleteOperation", deleteForId);
 //router.get("/edit/:id", editOneOperation);
