@@ -21,6 +21,9 @@ const operacionesSchema = new mongoose.Schema(
       type: Number,
       require: true,
     },
+    moneda: {
+      type: Number,
+    },
     monto: {
       type: Number,
     },
