@@ -108,11 +108,12 @@ const editOneOperation=async(req,res)=>{
 }
 
 const deleteForId = async (req, res) => {
-  try {
-    
-    const resOperDelete = await operaciones.deleteMany({
-      origen_id: req.body.idToDelete
-    });
+  console.log(req.body.user_id);
+  try {    
+    const resOperDelete = await operaciones.remove({      
+      $or:[{"origen_id": req.body.user_id},
+      {"destino_id": req.body.user_id}]
+    });    
     res.json(resOperDelete);
     // res.send(resOperDelete)
   } catch (error) {
