@@ -2,6 +2,7 @@ const express = require("express");
 const operaciones = require("../models/operationModel");
 const transaccion = require("../models/transactionModel");
 var ObjectId = require("mongodb").ObjectId;
+const jwt = require('jsonwebtoken')
 
 const actividadCtrlr = (req, res, next) => {
   let dato = {
@@ -32,12 +33,15 @@ const getAllOperations = async (req, res, next) => {
 //get all activities
 
 const getoperations = async (req, res, next) => {
-  console.dir(req.query);
+  const token=req.headers['autorization']
+  var decoded=jwt.decode(token)
+
+  console.log(decoded);
   //res.json(req.query.origen_id);
    try {
     const operations = await operaciones.find({
-      $or:[{"origen_id": req.query.id},
-      {"destino_id": req.query.id}]
+      $or:[{"origen_id": decoded.user_id},
+      {"destino_id": decoded.user_id}]
     }).sort( { createdAt: -1 } );
     console.log(operations);
     if (operations) {
@@ -87,6 +91,8 @@ const editOneOperation=async(req,res)=>{
    try {
     var idToEdit=req.params.id;
     var o_id=new ObjectId(idToEdit);
+  console.log(o_id)
+
 
     const resOperEdit=await operaciones.findByIdAndUpdate(
       {_id:o_id },
@@ -103,13 +109,14 @@ const editOneOperation=async(req,res)=>{
 
 const deleteForId = async (req, res) => {
   try {
-    const resOperDelete = await operaciones.remove({
-      _id: req.body.idToDelete,
+    
+    const resOperDelete = await operaciones.deleteMany({
+      origen_id: req.body.idToDelete
     });
     res.json(resOperDelete);
     // res.send(resOperDelete)
   } catch (error) {
-    res.send({ message: "error al querer borrar" });
+    res.send({ message: "error al querer borrar :",error });
   }
 };
 
