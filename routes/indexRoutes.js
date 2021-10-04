@@ -21,20 +21,23 @@ const {
   getStatus
 } = require("../controllers/estadosController");
 
-router.get("/", homeCtrlr);
+/*RUTAS DE DESARROLLO */
+//router.get("/", homeCtrlr);
 //router.get("/", getoperations);
 //router.post("/", newOperation);
 router.get("/getActivity", actividadCtrlr);
-
-router.get("/home?:id", getoperations);
 router.get("/home/getAll", getAllOperations);
-router.post("/addOperation", newOperation);
-router.post("/deleteOperation", deleteForId);
 //router.get("/edit/:id", editOneOperation);
-router.post("/edit", saveEditOperation);
-router.patch("/edit/:id", editOneOperation);
 router.post("/addTrans", addNewTransaction);
 router.get("/getTrans", getTransactions);
-router.post("/addStatus", addStatus);
 router.get("/getStatus", getStatus);
+router.post("/addStatus", addStatus);
+router.post("/edit", saveEditOperation);
+/* FIN RUTAS DE DESARROLLO */
+
+router.get("/", getoperations);
+router.post("/", newOperation);
+router.patch("/:id", editOneOperation);
+router.delete("/", deleteForId);
+
 module.exports = router;
