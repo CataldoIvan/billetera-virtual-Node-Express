@@ -27,7 +27,7 @@ const getAllOperations = async (req, res, next) => {
     }
   } catch (err) {
     console.log("aca hay un error en elk render", err);
-    res.send({ message: "error retrieving users" });
+    res.send({ message: "error retrieving users",err });
   } 
 };
 //get all activities
@@ -52,7 +52,7 @@ const getoperations = async (req, res, next) => {
     }
   } catch (err) {
     console.log("aca hay un error en elk render", err);
-    res.send({ message: "error retrieving users" });
+    res.send({ message: "error retrieving users",err });
   } 
 };
 
