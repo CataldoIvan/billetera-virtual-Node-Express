@@ -33,7 +33,7 @@ const getAllOperations = async (req, res, next) => {
 //get all activities
 
 const getoperations = async (req, res, next) => {
-  const token=req.headers['autorization']
+  const token=req.headers['authorization']
   var decoded=jwt.decode(token)
 
   console.log(decoded);

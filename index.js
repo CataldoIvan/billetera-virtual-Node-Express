@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 //app.use(cors());
 app.use(express.json());
 app.use(getTimes)
-app.use(validarTokenFn)
+/* app.use(validarTokenFn) */
 app.set("port", PORT);
 app.set("views", path.join(__dirname, "views"));
 app.engine(
