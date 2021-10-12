@@ -2,6 +2,15 @@ const { Router } = require("express");
 const cors = require("cors");
 const router = Router();
 const {
+
+  getOwnoperations,
+  newOwnOperation,
+  editOwnOneOperation,
+  saveEditOwnOperation,
+  deleteOwnForId,
+  getAllOwnOperations
+} = require("../controllers/operationsOwnControler");
+const {
   actividadCtrlr,
   newOperation,
   getoperations,
@@ -39,5 +48,10 @@ router.get("/", getoperations);
 router.post("/", newOperation);
 router.patch("/:id", editOneOperation);
 router.delete("/", deleteForId);
+
+router.get("/me", getOwnoperations);
+router.post("/me", newOwnOperation);
+router.patch("/me/:id", editOwnOneOperation);
+router.delete("/me", deleteOwnForId);
 
 module.exports = router;
