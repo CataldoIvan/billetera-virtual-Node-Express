@@ -108,16 +108,20 @@ const editOneOperation=async(req,res)=>{
 }
 
 const deleteForId = async (req, res) => {
-  console.log(req.body.user_id);
+  console.log("DETELE, ID",req.body.user_id);
   try {    
     const resOperDelete = await operaciones.remove({      
-      $or:[{"origen_id": req.body.user_id},
-      {"destino_id": req.body.user_id}]
+      $and: [
+        {"origen_id": req.body.user_id},
+        { $or: [{"tipo_transaccion": 3}, {"tipo_transaccion": 4}] }
+    ]
     });    
     res.json(resOperDelete);
+    console.log( eresOperDeleterr);
     // res.send(resOperDelete)
   } catch (error) {
-    res.send({ message: "error al querer borrar :",error });
+    res.send({ message: "error al querer borrar SDSD:",error });
+    console.log("NO SE PUDO BORRAR", error);
   }
 };
 
