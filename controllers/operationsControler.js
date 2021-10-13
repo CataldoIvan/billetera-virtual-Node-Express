@@ -119,11 +119,10 @@ const deleteForId = async (req, res) => {
     ]
     });    
     res.json(resOperDelete);
-    console.log( eresOperDeleterr);
-    // res.send(resOperDelete)
+   
   } catch (error) {
     res.send({ message: "error al querer borrar SDSD:",error });
-    console.log("NO SE PUDO BORRAR", error);
+  
   }
 };
 
