@@ -108,11 +108,13 @@ const editOneOperation=async(req,res)=>{
 }
 
 const deleteForId = async (req, res) => {
-  console.log("DETELE, ID",req.body.user_id);
+  const token=req.headers['authorization']
+  var decoded=jwt.decode(token)
+  
   try {    
     const resOperDelete = await operaciones.remove({      
       $and: [
-        {"origen_id": req.body.user_id},
+        {"origen_id":  decoded.user_id},
         { $or: [{"tipo_transaccion": 3}, {"tipo_transaccion": 4}] }
     ]
     });    
