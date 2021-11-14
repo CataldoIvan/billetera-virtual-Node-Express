@@ -39,8 +39,6 @@ router.get("/home/getAll", getAllOperations);
 //router.get("/edit/:id", editOneOperation);
 router.post("/addTrans", addNewTransaction);
 router.get("/getTrans", getTransactions);
-router.get("/getStatus", getStatus);
-router.post("/addStatus", addStatus);
 router.post("/edit", saveEditOperation);
 /* FIN RUTAS DE DESARROLLO */
 
@@ -53,5 +51,8 @@ router.get("/me", getOwnoperations);
 router.post("/me", newOwnOperation);
 router.patch("/me/:id", editOwnOneOperation);
 router.delete("/me", deleteOwnForId);
+/*RITAS DE LOS ESTADOS*/
+router.get("/getStatus", getStatus);
+router.post("/addStatus", addStatus);
 
 module.exports = router;
